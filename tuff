@@ -1,0 +1,93 @@
+local TextChatService = game:GetService("TextChatService")
+local channel = TextChatService.TextChannels:WaitForChild("RBXGeneral")
+
+local messages = {
+    "Imagine thinking you're good 💀",
+    "Bro plays like his monitor's off 😹",
+    "You miss more than you hit 🤡",
+    "Lag can't explain that performance 😭",
+    "Skill issue. Cope harder 😒",
+    "Your aim? Nonexistent 📉",
+    "Not even carried, just baggage 🎒",
+    "Every time you load in, the lobby cries 💀",
+    "Ratio'd in real life and in-game 📉📉",
+    "You're the reason the team loses 😂",
+    "Built like an NPC fr 🤖",
+    "You're just background noise 🎧",
+    "Playing like it's your first time 🍼",
+    "Your stats look like a horror story 😬",
+    "You're getting outplayed by a toaster 🔌",
+    "Keyboard warrior, game peasant 👑📉",
+    "You run from fights like it's a marathon 🏃💨",
+    "Top-tier L generator 💯❌",
+    "Your gameplay is a jump scare 😱",
+    "You couldn’t clutch if your life depended on it ☠️",
+    "Press Alt+F4 for a performance boost 🔥",
+    "Skill loading… failed ❌",
+    "Is your mouse made of soap? 🧼🖱️",
+    "Imagine being this bad in 2025 😭",
+    "Your gameplay gave me secondhand embarrassment 😬",
+    "Bro peaked in the tutorial 📚",
+    "Even bots laugh at your gameplay 🤖😂",
+    "Did you install the game or the virus? 🦠",
+    "You play like the controls are in Chinese 🈶",
+    "You got outsmarted by a fridge 💡",
+    "Every fight with you is free real estate 🏡",
+    "If you were a loadout, you'd be all gray 💩",
+    "That move was bold... and stupid 🧠🚫",
+    "You play like you're grounded IRL 😭",
+    "Your presence lowers team morale 📉",
+    "I've seen toddlers with better game sense 👶🎮",
+    "You camp harder than summer break ⛺",
+    "You’re the blueprint for failure 📄",
+    "Your highlight reel is a blooper compilation 📼",
+    "Even the devs want you to uninstall 🗑️",
+    "This isn't gameplay, it's a tragedy 🎭",
+    "You couldn’t hit a barn with a bazooka 🎯❌",
+    "You move like your ping is 9999 📶",
+    "Bro thinks he's good with 2 kills 😹",
+    "You heal the enemy’s confidence ❤️‍🩹",
+    "You're the reason tutorials exist 📚",
+    "You dodge bullets by getting hit 😵",
+    "You're fighting for the other team, right? 🤨",
+    "Aim so bad it’s legally blind 👓🚫",
+    "You fumble more than a rookie QB 🏈",
+    "You're farming L's like it's a crop 🌾❌",
+    "No clutch, just crutch 😩",
+    "Even the respawn screen is tired of you 🔁",
+    "You're the lag, not on it 😐",
+    "Built like patch notes nobody asked for 📜",
+    "More bricks than a construction site 🧱",
+    "You're dropping faster than the stock market 📉💸",
+    "Bro gets carried by gravity 🤕",
+    "You lost to someone using a touchpad 😭",
+    "You're a living tutorial dummy 🤖📚",
+    "Bro fights like he's on 1 FPS 📷",
+    "Even your avatar gave up 😪",
+    "Your skills are still in beta 🧪",
+    "Opps see you and get confidence boosts 😮‍💨",
+    "Uninstalling would be self-care 💆‍♂️",
+    "Bro's KD ratio is emotionally damaging 💔",
+    "If L was a person, it'd be you 👤❌",
+    "You're not even worth targeting 🚫🎯"
+}
+
+local function shuffle(t)
+    local n = #t
+    for i = n, 2, -1 do
+        local j = math.random(i)
+        t[i], t[j] = t[j], t[i]
+    end
+end
+
+task.spawn(function()
+    while true do
+        shuffle(messages)
+        for _, msg in ipairs(messages) do
+            if channel then
+                channel:SendAsync(msg)
+            end
+            task.wait(5)
+        end
+    end
+end)
