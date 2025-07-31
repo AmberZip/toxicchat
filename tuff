@@ -1,4 +1,6 @@
 local TextChatService = game:GetService("TextChatService")
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
 local channel = TextChatService.TextChannels:WaitForChild("RBXGeneral")
 
 local messages = {
@@ -72,6 +74,45 @@ local messages = {
     "You're not even worth targeting 🚫🎯"
 }
 
+local falseAccuseReplies = {
+    "%s, cry harder. Even your accusations are mid 💀",
+    "%s talking about exploits while being exploited by skill issues 😹",
+    "You're just mad you're bad, %s. Cope and seethe 😭",
+    "Says the one getting outplayed by thin air, %s 🤡",
+    "You're not losing to scripts, you're losing to talent you don’t have, %s 📉",
+    "Keep crying %s, it fuels me 😈",
+    "Skill check failed, %s. Blaming hacks won’t save you 💀",
+    "You scream 'hacker' like it's a magic spell to cover your Ls, %s ✨❌",
+    "Even your callouts are trash, %s 🤖🗑️",
+    "Nobody's hacking, %s. You’re just that irrelevant 😐",
+    "%s got clapped so bad they called the cheat police 🚨",
+    "Nah %s, that wasn’t a script. That was raw skill dunking on your ego 🥶",
+    "%s still uses ‘hacker’ like it’s 2010 😂",
+    "You reported me with tears in your eyes, admit it %s 😭",
+    "Even anti-cheat laughed at your complaint, %s 🤡",
+    "You really typed that with full WiFi and no shame, %s 😵‍💫",
+    "Skill gap so wide, %s called it a glitch 🚪",
+    "%s blaming scripts like they didn’t walk into bullets 💀",
+    "I’d explain what happened %s, but you'd still lose in slow-mo 🐌",
+    "%s thinks reporting me will fix their gameplay 💔"
+}
+
+local triggerWords = {
+    "hacker", "cheater", "exploiter", "scripter", "script", "hack", "exploiting", "exploits", "hacking"
+}
+
+-- Case-insensitive trigger check
+local function containsTriggerWord(message)
+    message = message:lower()
+    for _, word in ipairs(triggerWords) do
+        if string.find(message, word) then
+            return true
+        end
+    end
+    return false
+end
+
+-- Shuffle messages randomly
 local function shuffle(t)
     local n = #t
     for i = n, 2, -1 do
@@ -80,6 +121,7 @@ local function shuffle(t)
     end
 end
 
+-- Chat spam loop
 task.spawn(function()
     while true do
         shuffle(messages)
@@ -88,6 +130,24 @@ task.spawn(function()
                 channel:SendAsync(msg)
             end
             task.wait(5)
+        end
+    end
+end)
+
+-- Accusation detection and insult response
+TextChatService.MessageReceived:Connect(function(message)
+    local text = message.Text
+    local sender = message.TextSource
+
+    if not sender then return end
+    if sender.UserId == LocalPlayer.UserId then return end -- prevent replying to self
+
+    if containsTriggerWord(text) then
+        local name = sender.Name
+        local reply = falseAccuseReplies[math.random(1, #falseAccuseReplies)]
+        local finalMessage = string.format(reply, name)
+        if channel then
+            channel:SendAsync(finalMessage)
         end
     end
 end)
