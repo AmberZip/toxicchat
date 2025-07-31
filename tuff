@@ -44,11 +44,12 @@ local triggers = {
     TryhardAccuse = {"tryhard", "sweat", "nerd", "overkill", "no life"},
     Crying = {"stop", "unfair", "report", "abuse", "target", "spam", "why", "please"},
     LagExcuses = {"lag", "ping", "delay", "rubberband", "desync", "bug"},
-    1v1Talk = {"1v1", "duel", "fight me", "mano a mano"},
+    OneTalk = {"1v1", "duel", "fight me", "mano a mano"},
     AbilitiesCry = {"overpowered", "op glove", "broken glove", "nerf", "unbalanced"},
     DeathBlame = {"glove diff", "map diff", "spawn kill", "rng", "random"},
     RageWords = {"mad", "cry", "salty", "rage", "kid", "baby"},
     SlapFarmSalt = {"farm", "farming", "slap farm", "farming kills", "grind"}
+    Fling = {"fling", "flung", "flinged"}
 }
 
 -- === Replies per Category ===
@@ -88,7 +89,7 @@ local replies = {
         "Internet can't fix your decisions, %s 🔌",
         "Even your ping gave up, %s 📶"
     },
-    1v1Talk = {
+    OneTalk = {
         "1v1? %s you’d lose the loading screen 😹",
         "%s wants a duel but runs off cooldown 😭",
         "Square up? You can’t even square jump 🟦",
@@ -122,6 +123,9 @@ local replies = {
         "AFK grinding? Nah, you’re just a free slap, %s 💀",
         "Every slap you give is charity, %s 💸",
         "You’re farming deaths, %s 📉"
+    }
+    Fling = {
+        "%s I didn't fling you, you just suck 🤣",
     }
 }
 
