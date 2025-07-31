@@ -3,7 +3,7 @@ local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local channel = TextChatService.TextChannels:WaitForChild("RBXGeneral")
 
--- === Funny Auto Chat Messages ===
+-- === Main Random Messages ===
 local messages = {
     "Imagine thinking you're good 💀",
     "Bro plays like his monitor's off 😹",
@@ -24,10 +24,23 @@ local messages = {
     "Even the devs want you to uninstall 🗑️",
     "Bro gets carried by gravity 🤕",
     "You're the lag, not on it 😐",
-    "More bricks than a construction site 🧱"
+    "More bricks than a construction site 🧱",
+    "You play like a cutscene 😴",
+    "Bro's KD ratio spells 'help' 🆘",
+    "You reload more than you shoot 🔫🔄",
+    "Even your shadow left mid-match ☠️",
+    "I’ve seen toasters react faster 🔌",
+    "You aim like you closed your eyes 👀✖️",
+    "Game sense? You have game nonsense 🚫",
+    "You’re the reason tutorials exist 📚",
+    "You peak corners like it’s peekaboo 👶",
+    "If dying was a skill, you’d be pro 🏆",
+    "Whole lobby sees you and thinks 'free kill' 🎯",
+    "Your highlight reel is just respawns 🔁",
+    "You drop in like loot, and die like one too 📦"
 }
 
--- === Trigger Lists ===
+-- === Trigger Word Lists ===
 local triggers = {
     Accusations = {"hacker", "cheater", "scripter", "script", "exploit", "exploiter", "hacking", "exploiting"},
     SkillTrash = {"you're bad", "trash", "noob", "ez", "carried", "get good", "skill issue"},
@@ -41,7 +54,7 @@ local triggers = {
     GearBlamers = {"pay to win", "op weapon", "unfair gun", "broken kit", "nerf this"}
 }
 
--- === Reply Lists ===
+-- === Custom Reply Lists ===
 local replies = {
     Accusations = {
         "%s, cry harder. Even your accusations are mid 💀",
@@ -115,7 +128,7 @@ local replies = {
     }
 }
 
--- === Utilities ===
+-- === Utility Functions ===
 local function shuffle(t)
     local n = #t
     for i = n, 2, -1 do
@@ -134,7 +147,7 @@ local function containsTrigger(text, triggerList)
     return false
 end
 
--- === Auto Message Spammer ===
+-- === Auto Spam Messages ===
 task.spawn(function()
     while true do
         shuffle(messages)
@@ -147,7 +160,7 @@ task.spawn(function()
     end
 end)
 
--- === Reactive Message Listener ===
+-- === Reactive Insults ===
 TextChatService.MessageReceived:Connect(function(message)
     local sender = message.TextSource
     local text = message.Text
