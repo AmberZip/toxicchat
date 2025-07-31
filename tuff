@@ -201,3 +201,5 @@ TextChatService.MessageReceived:Connect(function(message)
 
     if reply then
         channel:SendAsync(string.format(reply, name))
+    end
+end)
