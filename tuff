@@ -3,6 +3,7 @@ local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local channel = TextChatService.TextChannels:WaitForChild("RBXGeneral")
 
+-- === Message Spam List ===
 local messages = {
     "Imagine thinking you're good 💀",
     "Bro plays like his monitor's off 😹",
@@ -74,45 +75,90 @@ local messages = {
     "You're not even worth targeting 🚫🎯"
 }
 
-local falseAccuseReplies = {
+-- === CATEGORY 1: Accusations (e.g., "hacker") ===
+local accusationTriggers = {
+    "hacker", "cheater", "scripter", "script", "exploit", "exploiter", "hacking", "exploiting"
+}
+
+local accusationReplies = {
     "%s, cry harder. Even your accusations are mid 💀",
-    "%s talking about exploits while being exploited by skill issues 😹",
     "You're just mad you're bad, %s. Cope and seethe 😭",
-    "Says the one getting outplayed by thin air, %s 🤡",
-    "You're not losing to scripts, you're losing to talent you don’t have, %s 📉",
-    "Keep crying %s, it fuels me 😈",
-    "Skill check failed, %s. Blaming hacks won’t save you 💀",
-    "You scream 'hacker' like it's a magic spell to cover your Ls, %s ✨❌",
-    "Even your callouts are trash, %s 🤖🗑️",
-    "Nobody's hacking, %s. You’re just that irrelevant 😐",
-    "%s got clapped so bad they called the cheat police 🚨",
-    "Nah %s, that wasn’t a script. That was raw skill dunking on your ego 🥶",
-    "%s still uses ‘hacker’ like it’s 2010 😂",
-    "You reported me with tears in your eyes, admit it %s 😭",
-    "Even anti-cheat laughed at your complaint, %s 🤡",
-    "You really typed that with full WiFi and no shame, %s 😵‍💫",
-    "Skill gap so wide, %s called it a glitch 🚪",
     "%s blaming scripts like they didn’t walk into bullets 💀",
-    "I’d explain what happened %s, but you'd still lose in slow-mo 🐌",
-    "%s thinks reporting me will fix their gameplay 💔"
+    "Even anti-cheat laughed at your complaint, %s 🤡",
+    "Skill gap so wide, %s called it a glitch 🚪",
+    "%s got clapped so hard they filed a bug report 💻💥",
+    "No hacks needed to embarrass you, %s 😈",
+    "You're losing to fingers, not code %s ✋",
+    "This ain’t a script, you’re just trash %s 🗑️",
+    "You really typed that with tears in your eyes, %s 😭"
 }
 
-local triggerWords = {
-    "hacker", "cheater", "exploiter", "scripter", "script", "hack", "exploiting", "exploits", "hacking"
+-- === CATEGORY 2: Trash Talk (e.g., "noob") ===
+local skillTriggers = {
+    "you're bad", "trash", "noob", "ez", "carried", "get good", "skill issue"
 }
 
--- Case-insensitive trigger check
-local function containsTriggerWord(message)
-    message = message:lower()
-    for _, word in ipairs(triggerWords) do
-        if string.find(message, word) then
+local skillReplies = {
+    "%s, you talk big for someone bottom fragging every game 🗑️",
+    "Loud words for low stats, %s 📉",
+    "You're one more L away from rage quitting, %s 🎮",
+    "Noob? %s, you're the pre-installed version 😐",
+    "The only thing you carry is failure, %s 💼",
+    "You died in the tutorial, %s 📚💀",
+    "Your skill is fictional, %s 🧠📉",
+    "%s flexing like a bronze trophy 🥉",
+    "You missed every shot and still talk, %s 😭",
+    "You're the bot everyone farmed, %s 🤖"
+}
+
+-- === CATEGORY 3: Tryhard Accusations (e.g., "touch grass") ===
+local tryhardTriggers = {
+    "tryhard", "sweat", "nerd", "no life", "touch grass", "overkill"
+}
+
+local tryhardReplies = {
+    "%s, sorry I'm good and you're not 😈",
+    "Skill is free, %s. Grass is DLC 🌱",
+    "You're allergic to effort, %s 🤧",
+    "Maybe try harding at not being garbage, %s 💀",
+    "Go cry about it, %s 😭",
+    "Skill check? Failed. %s needs a patch 📉",
+    "Tryhard? You haven’t even tried yet, %s 😹",
+    "Touch grass? %s, touch skill first 🎯",
+    "I try, you cry. Stay mad %s 🧂",
+    "Just say you're bad and go, %s 👋"
+}
+
+-- === CATEGORY 4: Crybaby Talk (e.g., "unfair", "report") ===
+local crybabyTriggers = {
+    "unfair", "report", "stop", "toxic", "abuse", "why", "please", "teaming", "help", "bully"
+}
+
+local crybabyReplies = {
+    "Oh no, %s is crying again 😭",
+    "Skill hurts your feelings? Good, %s 💀",
+    "This isn’t a daycare, %s 💢",
+    "Your tears power my KD, %s 🔋",
+    "You’re not a victim, just bad %s 😐",
+    "Whining won’t save you, %s 📉",
+    "It’s called skill. Google it, %s 🧠",
+    "The salt is strong with this one, %s 🧂",
+    "This is a battlefield not a safe space, %s 🔫",
+    "You lost and now you're tweeting from the chat, %s 🐦"
+}
+
+-- === Helper: Match trigger words ===
+local function messageMatchesTriggers(text, triggers)
+    text = text:lower()
+    for _, word in ipairs(triggers) do
+        if string.find(text, word) then
             return true
         end
     end
     return false
 end
 
--- Shuffle messages randomly
+-- === Shuffle function ===
 local function shuffle(t)
     local n = #t
     for i = n, 2, -1 do
@@ -121,7 +167,7 @@ local function shuffle(t)
     end
 end
 
--- Chat spam loop
+-- === Chat Spammer ===
 task.spawn(function()
     while true do
         shuffle(messages)
@@ -134,20 +180,24 @@ task.spawn(function()
     end
 end)
 
--- Accusation detection and insult response
+-- === Message Listener ===
 TextChatService.MessageReceived:Connect(function(message)
     local text = message.Text
     local sender = message.TextSource
+    if not sender or sender.UserId == LocalPlayer.UserId then return end
 
-    if not sender then return end
-    if sender.UserId == LocalPlayer.UserId then return end -- prevent replying to self
+    local name = sender.Name
+    local reply = nil
 
-    if containsTriggerWord(text) then
-        local name = sender.Name
-        local reply = falseAccuseReplies[math.random(1, #falseAccuseReplies)]
-        local finalMessage = string.format(reply, name)
-        if channel then
-            channel:SendAsync(finalMessage)
-        end
+    if messageMatchesTriggers(text, accusationTriggers) then
+        reply = accusationReplies[math.random(1, #accusationReplies)]
+    elseif messageMatchesTriggers(text, skillTriggers) then
+        reply = skillReplies[math.random(1, #skillReplies)]
+    elseif messageMatchesTriggers(text, tryhardTriggers) then
+        reply = tryhardReplies[math.random(1, #tryhardReplies)]
+    elseif messageMatchesTriggers(text, crybabyTriggers) then
+        reply = crybabyReplies[math.random(1, #crybabyReplies)]
     end
-end)
+
+    if reply then
+        channel:SendAsync(string.format(reply, name))
