@@ -3,162 +3,119 @@ local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local channel = TextChatService.TextChannels:WaitForChild("RBXGeneral")
 
--- === Message Spam List ===
+-- === Funny Auto Chat Messages ===
 local messages = {
     "Imagine thinking you're good 💀",
     "Bro plays like his monitor's off 😹",
     "You miss more than you hit 🤡",
     "Lag can't explain that performance 😭",
     "Skill issue. Cope harder 😒",
-    "Your aim? Nonexistent 📉",
     "Not even carried, just baggage 🎒",
     "Every time you load in, the lobby cries 💀",
     "Ratio'd in real life and in-game 📉📉",
     "You're the reason the team loses 😂",
-    "Built like an NPC fr 🤖",
-    "You're just background noise 🎧",
     "Playing like it's your first time 🍼",
-    "Your stats look like a horror story 😬",
-    "You're getting outplayed by a toaster 🔌",
-    "Keyboard warrior, game peasant 👑📉",
-    "You run from fights like it's a marathon 🏃💨",
-    "Top-tier L generator 💯❌",
-    "Your gameplay is a jump scare 😱",
-    "You couldn’t clutch if your life depended on it ☠️",
-    "Press Alt+F4 for a performance boost 🔥",
-    "Skill loading… failed ❌",
-    "Is your mouse made of soap? 🧼🖱️",
-    "Imagine being this bad in 2025 😭",
-    "Your gameplay gave me secondhand embarrassment 😬",
-    "Bro peaked in the tutorial 📚",
     "Even bots laugh at your gameplay 🤖😂",
     "Did you install the game or the virus? 🦠",
-    "You play like the controls are in Chinese 🈶",
-    "You got outsmarted by a fridge 💡",
-    "Every fight with you is free real estate 🏡",
+    "You got outplayed by a fridge 💡",
     "If you were a loadout, you'd be all gray 💩",
-    "That move was bold... and stupid 🧠🚫",
-    "You play like you're grounded IRL 😭",
     "Your presence lowers team morale 📉",
-    "I've seen toddlers with better game sense 👶🎮",
     "You camp harder than summer break ⛺",
-    "You’re the blueprint for failure 📄",
-    "Your highlight reel is a blooper compilation 📼",
     "Even the devs want you to uninstall 🗑️",
-    "This isn't gameplay, it's a tragedy 🎭",
-    "You couldn’t hit a barn with a bazooka 🎯❌",
-    "You move like your ping is 9999 📶",
-    "Bro thinks he's good with 2 kills 😹",
-    "You heal the enemy’s confidence ❤️‍🩹",
-    "You're the reason tutorials exist 📚",
-    "You dodge bullets by getting hit 😵",
-    "You're fighting for the other team, right? 🤨",
-    "Aim so bad it’s legally blind 👓🚫",
-    "You fumble more than a rookie QB 🏈",
-    "You're farming L's like it's a crop 🌾❌",
-    "No clutch, just crutch 😩",
-    "Even the respawn screen is tired of you 🔁",
-    "You're the lag, not on it 😐",
-    "Built like patch notes nobody asked for 📜",
-    "More bricks than a construction site 🧱",
-    "You're dropping faster than the stock market 📉💸",
     "Bro gets carried by gravity 🤕",
-    "You lost to someone using a touchpad 😭",
-    "You're a living tutorial dummy 🤖📚",
-    "Bro fights like he's on 1 FPS 📷",
-    "Even your avatar gave up 😪",
-    "Your skills are still in beta 🧪",
-    "Opps see you and get confidence boosts 😮‍💨",
-    "Uninstalling would be self-care 💆‍♂️",
-    "Bro's KD ratio is emotionally damaging 💔",
-    "If L was a person, it'd be you 👤❌",
-    "You're not even worth targeting 🚫🎯"
+    "You're the lag, not on it 😐",
+    "More bricks than a construction site 🧱"
 }
 
--- === CATEGORY 1: Accusations (e.g., "hacker") ===
-local accusationTriggers = {
-    "hacker", "cheater", "scripter", "script", "exploit", "exploiter", "hacking", "exploiting"
+-- === Trigger Lists ===
+local triggers = {
+    Accusations = {"hacker", "cheater", "scripter", "script", "exploit", "exploiter", "hacking", "exploiting"},
+    SkillTrash = {"you're bad", "trash", "noob", "ez", "carried", "get good", "skill issue"},
+    TryhardClaims = {"tryhard", "sweat", "nerd", "no life", "touch grass", "overkill"},
+    Crybabies = {"unfair", "report", "stop", "toxic", "abuse", "why", "please"},
+    LagBlamers = {"lag", "ping", "rubberband", "delay", "desync"},
+    OneVOne = {"1v1", "duel", "fight me", "square up", "mano a mano"},
+    Hackusation2 = {"aimbot", "esp", "wallhack", "auto aim", "snap aim"},
+    Carried = {"carried", "deadweight", "backpack", "useless", "bottom frag"},
+    RandomToxic = {"kid", "mad", "cry", "salty", "rage", "baby"},
+    GearBlamers = {"pay to win", "op weapon", "unfair gun", "broken kit", "nerf this"}
 }
 
-local accusationReplies = {
-    "%s, cry harder. Even your accusations are mid 💀",
-    "You're just mad you're bad, %s. Cope and seethe 😭",
-    "%s blaming scripts like they didn’t walk into bullets 💀",
-    "Even anti-cheat laughed at your complaint, %s 🤡",
-    "Skill gap so wide, %s called it a glitch 🚪",
-    "%s got clapped so hard they filed a bug report 💻💥",
-    "No hacks needed to embarrass you, %s 😈",
-    "You're losing to fingers, not code %s ✋",
-    "This ain’t a script, you’re just trash %s 🗑️",
-    "You really typed that with tears in your eyes, %s 😭"
+-- === Reply Lists ===
+local replies = {
+    Accusations = {
+        "%s, cry harder. Even your accusations are mid 💀",
+        "You're just mad you're bad, %s. Cope and seethe 😭",
+        "%s blaming scripts like they didn’t walk into bullets 💀",
+        "Even anti-cheat laughed at your complaint, %s 🤡",
+        "Skill gap so wide, %s called it a glitch 🚪"
+    },
+    SkillTrash = {
+        "%s, you talk big for someone bottom fragging every game 🗑️",
+        "Loud words for low stats, %s 📉",
+        "You're one more loss away from uninstalling, %s 😭",
+        "Noob? %s, you're the pre-installed version 😐",
+        "The only thing you carry is failure, %s 💼"
+    },
+    TryhardClaims = {
+        "%s, sorry I’m good and you’re not 😈",
+        "Skill is free, %s. Grass is DLC 🌱",
+        "Blaming effort? Stay bronze, %s 🥉",
+        "You're allergic to effort huh, %s 🤧",
+        "Maybe try harding at not being garbage, %s 💀"
+    },
+    Crybabies = {
+        "Oh no, %s is crying again 😭",
+        "Skill hurts your feelings, %s? Good 💀",
+        "%s reporting me like it's gonna fix your skill issue 📋",
+        "This isn’t a daycare, %s 💢",
+        "Your tears power my KD, %s 🔥"
+    },
+    LagBlamers = {
+        "Sure, %s. Blame lag instead of your slow brain 🧠📶",
+        "Lag didn’t make you walk into my shots, %s 💀",
+        "%s blaming ping while standing still like a statue 🗿",
+        "Your ping isn't the problem, it's your aim %s 👓",
+        "Lag? More like excuses.exe, %s 🔧"
+    },
+    OneVOne = {
+        "1v1? %s, you wouldn’t survive the loading screen 🖥️",
+        "I'd 1v1 you but bullying is against TOS, %s 🤡",
+        "Your KD can’t even 1v1 gravity, %s 📉",
+        "%s, you’d bring a knife to a nuke fight ☢️",
+        "1v1? You'd still lose with walls turned off, %s 😂"
+    },
+    Hackusation2 = {
+        "Aimbot? Nah %s, just raw talent 💯",
+        "Wallhacks? Or just wallbanged your ego, %s 🎯",
+        "%s really said ESP while staring at spawn 🥲",
+        "You’d still lose if I played blindfolded, %s 🥷",
+        "Aim too clean? Thanks for the compliment %s 😎"
+    },
+    Carried = {
+        "%s, I carry harder than DoorDash 🛒",
+        "You weigh down the team like lag, %s 🧱",
+        "%s is just a spectator with a gun 🎥🔫",
+        "You’re not even carried, you’re cargo 🚚 %s",
+        "Team player? Nah, you're team burden, %s 📉"
+    },
+    RandomToxic = {
+        "You mad, %s? You sound like a Discord mod losing mod powers 🧂",
+        "Cry louder, %s. I’m farming salt today 💧",
+        "%s raging like it’s ranked in 2012 💀",
+        "Go outside %s. Touching grass isn’t lethal 🌱",
+        "%s brings nothing but noise and disappointment 🎧"
+    },
+    GearBlamers = {
+        "You said OP weapon, %s? Sounds like a skill diff 💀",
+        "Broken kit? More like broken ego, %s 🧠",
+        "%s blaming gear like I didn't outplay you with it 🔫",
+        "Pay to win? You didn’t even try, %s 💤",
+        "%s crying over loadouts instead of learning 💡"
+    }
 }
 
--- === CATEGORY 2: Trash Talk (e.g., "noob") ===
-local skillTriggers = {
-    "you're bad", "trash", "noob", "ez", "carried", "get good", "skill issue"
-}
-
-local skillReplies = {
-    "%s, you talk big for someone bottom fragging every game 🗑️",
-    "Loud words for low stats, %s 📉",
-    "You're one more L away from rage quitting, %s 🎮",
-    "Noob? %s, you're the pre-installed version 😐",
-    "The only thing you carry is failure, %s 💼",
-    "You died in the tutorial, %s 📚💀",
-    "Your skill is fictional, %s 🧠📉",
-    "%s flexing like a bronze trophy 🥉",
-    "You missed every shot and still talk, %s 😭",
-    "You're the bot everyone farmed, %s 🤖"
-}
-
--- === CATEGORY 3: Tryhard Accusations (e.g., "touch grass") ===
-local tryhardTriggers = {
-    "tryhard", "sweat", "nerd", "no life", "touch grass", "overkill"
-}
-
-local tryhardReplies = {
-    "%s, sorry I'm good and you're not 😈",
-    "Skill is free, %s. Grass is DLC 🌱",
-    "You're allergic to effort, %s 🤧",
-    "Maybe try harding at not being garbage, %s 💀",
-    "Go cry about it, %s 😭",
-    "Skill check? Failed. %s needs a patch 📉",
-    "Tryhard? You haven’t even tried yet, %s 😹",
-    "Touch grass? %s, touch skill first 🎯",
-    "I try, you cry. Stay mad %s 🧂",
-    "Just say you're bad and go, %s 👋"
-}
-
--- === CATEGORY 4: Crybaby Talk (e.g., "unfair", "report") ===
-local crybabyTriggers = {
-    "unfair", "report", "stop", "toxic", "abuse", "why", "please", "teaming", "help", "bully"
-}
-
-local crybabyReplies = {
-    "Oh no, %s is crying again 😭",
-    "Skill hurts your feelings? Good, %s 💀",
-    "This isn’t a daycare, %s 💢",
-    "Your tears power my KD, %s 🔋",
-    "You’re not a victim, just bad %s 😐",
-    "Whining won’t save you, %s 📉",
-    "It’s called skill. Google it, %s 🧠",
-    "The salt is strong with this one, %s 🧂",
-    "This is a battlefield not a safe space, %s 🔫",
-    "You lost and now you're tweeting from the chat, %s 🐦"
-}
-
--- === Helper: Match trigger words ===
-local function messageMatchesTriggers(text, triggers)
-    text = text:lower()
-    for _, word in ipairs(triggers) do
-        if string.find(text, word) then
-            return true
-        end
-    end
-    return false
-end
-
--- === Shuffle function ===
+-- === Utilities ===
 local function shuffle(t)
     local n = #t
     for i = n, 2, -1 do
@@ -167,7 +124,17 @@ local function shuffle(t)
     end
 end
 
--- === Chat Spammer ===
+local function containsTrigger(text, triggerList)
+    local lowered = text:lower()
+    for _, trigger in ipairs(triggerList) do
+        if string.find(lowered, trigger) then
+            return true
+        end
+    end
+    return false
+end
+
+-- === Auto Message Spammer ===
 task.spawn(function()
     while true do
         shuffle(messages)
@@ -180,26 +147,22 @@ task.spawn(function()
     end
 end)
 
--- === Message Listener ===
+-- === Reactive Message Listener ===
 TextChatService.MessageReceived:Connect(function(message)
-    local text = message.Text
     local sender = message.TextSource
+    local text = message.Text
+
     if not sender or sender.UserId == LocalPlayer.UserId then return end
-
     local name = sender.Name
-    local reply = nil
 
-    if messageMatchesTriggers(text, accusationTriggers) then
-        reply = accusationReplies[math.random(1, #accusationReplies)]
-    elseif messageMatchesTriggers(text, skillTriggers) then
-        reply = skillReplies[math.random(1, #skillReplies)]
-    elseif messageMatchesTriggers(text, tryhardTriggers) then
-        reply = tryhardReplies[math.random(1, #tryhardReplies)]
-    elseif messageMatchesTriggers(text, crybabyTriggers) then
-        reply = crybabyReplies[math.random(1, #crybabyReplies)]
-    end
-
-    if reply then
-        channel:SendAsync(string.format(reply, name))
+    for category, triggerList in pairs(triggers) do
+        if containsTrigger(text, triggerList) then
+            local categoryReplies = replies[category]
+            if categoryReplies then
+                local reply = string.format(categoryReplies[math.random(1, #categoryReplies)], name)
+                channel:SendAsync(reply)
+                break
+            end
+        end
     end
 end)
