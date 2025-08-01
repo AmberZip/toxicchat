@@ -3,135 +3,131 @@ local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local channel = TextChatService.TextChannels:WaitForChild("RBXGeneral")
 
--- === Main Random Messages ===
+-- === Random Chat Spam Messages (Slap Battles Theme) ===
 local messages = {
-    "Imagine thinking you're good 💀",
-    "Bro plays like his monitor's off 😹",
-    "You miss more than you hit 🤡",
-    "Lag can't explain that performance 😭",
-    "Skill issue. Cope harder 😒",
-    "Not even carried, just baggage 🎒",
-    "Every time you load in, the lobby cries 💀",
-    "Ratio'd in real life and in-game 📉📉",
-    "You're the reason the team loses 😂",
-    "Playing like it's your first time 🍼",
-    "Even bots laugh at your gameplay 🤖😂",
-    "Did you install the game or the virus? 🦠",
-    "You got outplayed by a fridge 💡",
-    "If you were a loadout, you'd be all gray 💩",
-    "Your presence lowers team morale 📉",
-    "You camp harder than summer break ⛺",
-    "Even the devs want you to uninstall 🗑️",
-    "Bro gets carried by gravity 🤕",
-    "You're the lag, not on it 😐",
-    "More bricks than a construction site 🧱",
-    "You play like a cutscene 😴",
-    "Bro's KD ratio spells 'help' 🆘",
-    "You reload more than you shoot 🔫🔄",
-    "Even your shadow left mid-match ☠️",
-    "I’ve seen toasters react faster 🔌",
-    "You aim like you closed your eyes 👀✖️",
-    "Game sense? You have game nonsense 🚫",
-    "You’re the reason tutorials exist 📚",
-    "You peak corners like it’s peekaboo 👶",
-    "If dying was a skill, you’d be pro 🏆",
-    "Whole lobby sees you and thinks 'free kill' 🎯",
-    "Your highlight reel is just respawns 🔁",
-    "You drop in like loot, and die like one too 📦"
+    "You get slapped more than a mosquito in summer 🦟",
+    "Your glove choice says 'perma L' 😭",
+    "Imagine missing a slap point blank 💀",
+    "You're the reason the void exists 😹",
+    "Your KD is just K for Krusty 🤡",
+    "Not even Bob would waste time on you 🪦",
+    "You die faster than someone with default glove in slap royale ☠️",
+    "Slap power: 0. Brain power: also 0 🔌",
+    "I’ve seen rock gloves do more than you 🪨",
+    "Your game sense is like RNG—nonexistent 🎲",
+    "Even the table glove wouldn’t carry you 📉",
+    "Bro got pinged into the next lobby 📡",
+    "You slap like you're asking politely 🫴",
+    "Your glove's better than your skill—barely 🤖",
+    "Only thing you combo is respawns 🔁",
+    "You must think the void gives points 😭",
+    "Your only W is watching others win 👀",
+    "Bob sees you and walks away 💀",
+    "You'd miss with extended reach 😐",
+    "You fell off harder than Elude glove 😬",
+    "Bro gets juked by AFK players 🤡",
+    "You're the NPC Slapple warns us about 🤖",
+    "Your slaps are weaker than Woah glove 💨",
+    "You panic teleport into the void 😹",
+    "Skill diff so wide it’s a canyon 🌄",
+    "Even Reverse doesn't want your slap back 🔄",
+    "You’re a walking slap donation machine 💸",
+    "Glove tier: God. Player tier: Trash 🗑️",
+    "Every time you slap, a noob gets stronger ✨",
+    "Void farming? You're just farming Ls 📦"
 }
 
--- === Trigger Word Lists ===
+-- === Trigger Word Categories ===
 local triggers = {
-    Accusations = {"hacker", "cheater", "scripter", "script", "exploit", "exploiter", "hacking", "exploiting"},
-    SkillTrash = {"you're bad", "trash", "noob", "ez", "carried", "get good", "skill issue"},
-    TryhardClaims = {"tryhard", "sweat", "nerd", "no life", "touch grass", "overkill"},
-    Crybabies = {"unfair", "report", "stop", "toxic", "abuse", "why", "please"},
-    LagBlamers = {"lag", "ping", "rubberband", "delay", "desync"},
-    OneVOne = {"1v1", "duel", "fight me", "square up", "mano a mano"},
-    Hackusation2 = {"aimbot", "esp", "wallhack", "auto aim", "snap aim"},
-    Carried = {"carried", "deadweight", "backpack", "useless", "bottom frag"},
-    RandomToxic = {"kid", "mad", "cry", "salty", "rage", "baby"},
-    GearBlamers = {"pay to win", "op weapon", "unfair gun", "broken kit", "nerf this"}
+    Accusations = {"exploit", "cheat", "hacker", "script", "exploit", "abuse", "autoclick", "macro"},
+    SkillTrash = {"noob", "trash", "bad", "ez", "carried", "skill issue", "get good"},
+    TryhardClaims = {"sweat", "tryhard", "nerd", "no life", "overkill", "touch grass"},
+    Crybabies = {"stop", "unfair", "abuse", "why", "toxic", "please", "report"},
+    LagBlamers = {"lag", "ping", "desync", "rubberband", "delay"},
+    OneVOne = {"1v1", "duel", "square up", "fight me"},
+    Hackusation2 = {"aimbot", "trigger", "auto", "esp", "hitbox", "reach"},
+    Carried = {"carried", "deadweight", "bottom frag", "backpack", "useless"},
+    RandomToxic = {"cry", "mad", "kid", "salty", "rage", "baby"},
+    GearBlamers = {"op glove", "pay to win", "broken glove", "nerf", "unbalanced"}
 }
 
--- === Custom Reply Lists ===
+-- === Slap Battles Specific Roasts ===
 local replies = {
     Accusations = {
-        "%s, cry harder. Even your accusations are mid 💀",
-        "You're just mad you're bad, %s. Cope and seethe 😭",
-        "%s blaming scripts like they didn’t walk into bullets 💀",
-        "Even anti-cheat laughed at your complaint, %s 🤡",
-        "Skill gap so wide, %s called it a glitch 🚪"
+        "%s, blaming exploits won’t save you from Ls 💀",
+        "You call it hacking, I call it skill 😎 %s",
+        "Even Bob plays more legit than you, %s 🪦",
+        "Report me after you learn how to slap, %s 👋",
+        "You're not losing to scripts, you're losing to facts, %s 📉"
     },
     SkillTrash = {
-        "%s, you talk big for someone bottom fragging every game 🗑️",
-        "Loud words for low stats, %s 📉",
-        "You're one more loss away from uninstalling, %s 😭",
-        "Noob? %s, you're the pre-installed version 😐",
-        "The only thing you carry is failure, %s 💼"
+        "%s, you're the tutorial boss of Slap Battles 🤡",
+        "Skill issue? Nah, full-on gameplay crisis, %s 🚨",
+        "You can’t even land a slap with extended 😭 %s",
+        "%s, get good before you get gloves 🔧",
+        "You're not trash %s, you're biodegradable ♻️"
     },
     TryhardClaims = {
-        "%s, sorry I’m good and you’re not 😈",
-        "Skill is free, %s. Grass is DLC 🌱",
-        "Blaming effort? Stay bronze, %s 🥉",
-        "You're allergic to effort huh, %s 🤧",
-        "Maybe try harding at not being garbage, %s 💀"
+        "%s calling tryhard when they can't dodge a bus glove 😭",
+        "Sorry I slapped you into orbit %s 🚀",
+        "%s, grass is for those who can't touch the leaderboard 💀",
+        "Tryhard? You tried nothing and still failed 😬 %s",
+        "%s, get a better excuse before you cry next round 🧂"
     },
     Crybabies = {
-        "Oh no, %s is crying again 😭",
-        "Skill hurts your feelings, %s? Good 💀",
-        "%s reporting me like it's gonna fix your skill issue 📋",
-        "This isn’t a daycare, %s 💢",
-        "Your tears power my KD, %s 🔥"
+        "Crying already, %s? Just uninstall 😭",
+        "%s, this isn’t daycare, this is SLAP BATTLES 💢",
+        "Keep crying, %s, the void loves your tears 😹",
+        "Report me for being better? Stay mad %s 🤣",
+        "Skill hurts your feelings huh %s 💀"
     },
     LagBlamers = {
-        "Sure, %s. Blame lag instead of your slow brain 🧠📶",
-        "Lag didn’t make you walk into my shots, %s 💀",
-        "%s blaming ping while standing still like a statue 🗿",
-        "Your ping isn't the problem, it's your aim %s 👓",
-        "Lag? More like excuses.exe, %s 🔧"
+        "Lag isn't your enemy, skill is, %s 📶💀",
+        "%s always lags right after losing 😭",
+        "Bro blames ping for walking into Slapple 😐 %s",
+        "Lag? No, just pure garbage gameplay %s 🗑️",
+        "Desync? More like excuse.exe crashing again %s 💾"
     },
     OneVOne = {
-        "1v1? %s, you wouldn’t survive the loading screen 🖥️",
-        "I'd 1v1 you but bullying is against TOS, %s 🤡",
-        "Your KD can’t even 1v1 gravity, %s 📉",
-        "%s, you’d bring a knife to a nuke fight ☢️",
-        "1v1? You'd still lose with walls turned off, %s 😂"
+        "1v1 you? You’d fall off the map before we start 😹 %s",
+        "%s, I'd 1v1 but bullying isn’t allowed 🤡",
+        "You want a duel? Try dueling your awareness first %s 👁️",
+        "Fight you? You get outplayed by AFKs %s 😂",
+        "Your ego's the only thing bigger than your Ls %s 🥴"
     },
     Hackusation2 = {
-        "Aimbot? Nah %s, just raw talent 💯",
-        "Wallhacks? Or just wallbanged your ego, %s 🎯",
-        "%s really said ESP while staring at spawn 🥲",
-        "You’d still lose if I played blindfolded, %s 🥷",
-        "Aim too clean? Thanks for the compliment %s 😎"
+        "No aimlock, just aim skill. Cope, %s 🎯",
+        "%s thinks skill is hacks 😭",
+        "If I was cheating I’d be farming faster, %s 💀",
+        "You losing doesn’t equal me hacking, %s 🤡",
+        "Even Anticheat slapped you for crying, %s 📋"
     },
     Carried = {
-        "%s, I carry harder than DoorDash 🛒",
-        "You weigh down the team like lag, %s 🧱",
-        "%s is just a spectator with a gun 🎥🔫",
-        "You’re not even carried, you’re cargo 🚚 %s",
-        "Team player? Nah, you're team burden, %s 📉"
+        "Carried? %s, you’re the glove I’m dragging 🧤",
+        "You’re not even on the team, just extra weight %s 🧱",
+        "%s spectates more than they play 😂",
+        "Deadweight like %s makes me stronger 💪",
+        "You ain’t carried, you're cargo 🚚 %s"
     },
     RandomToxic = {
-        "You mad, %s? You sound like a Discord mod losing mod powers 🧂",
-        "Cry louder, %s. I’m farming salt today 💧",
-        "%s raging like it’s ranked in 2012 💀",
-        "Go outside %s. Touching grass isn’t lethal 🌱",
-        "%s brings nothing but noise and disappointment 🎧"
+        "Cry harder %s, it fuels my slap streak 😈",
+        "%s salty enough to be used on fries 🍟",
+        "You're raging harder than the bus glove impact %s 💥",
+        "You mad %s? Go slap a wall 🤡",
+        "Touching grass won’t save you now %s 🌱"
     },
     GearBlamers = {
-        "You said OP weapon, %s? Sounds like a skill diff 💀",
-        "Broken kit? More like broken ego, %s 🧠",
-        "%s blaming gear like I didn't outplay you with it 🔫",
-        "Pay to win? You didn’t even try, %s 💤",
-        "%s crying over loadouts instead of learning 💡"
+        "%s mad because my glove has better synergy 💀",
+        "OP glove? Cope harder, %s 😎",
+        "%s crying about loadout instead of adapting 📉",
+        "It’s not pay to win, it’s you refusing to learn 🤓 %s",
+        "Broken glove? Nah, you’re broken at the game %s ⚠️"
     }
 }
 
--- === Utility Functions ===
+-- === Utility ===
 local function shuffle(t)
-    local n = #t
-    for i = n, 2, -1 do
+    for i = #t, 2, -1 do
         local j = math.random(i)
         t[i], t[j] = t[j], t[i]
     end
@@ -147,7 +143,7 @@ local function containsTrigger(text, triggerList)
     return false
 end
 
--- === Auto Spam Messages ===
+-- === Auto Message Spam ===
 task.spawn(function()
     while true do
         shuffle(messages)
@@ -155,12 +151,12 @@ task.spawn(function()
             if channel then
                 channel:SendAsync(msg)
             end
-            task.wait(5)
+            task.wait(5) -- Adjust for how aggressive you want it
         end
     end
 end)
 
--- === Reactive Insults ===
+-- === Reactive Slapbacks ===
 TextChatService.MessageReceived:Connect(function(message)
     local sender = message.TextSource
     local text = message.Text
