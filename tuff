@@ -5,6 +5,7 @@ local channel = TextChatService.TextChannels:WaitForChild("RBXGeneral")
 
 -- === Random Chat Spam Messages (Slap Battles Theme) ===
 local messages = {
+    -- Original 30
     "You get slapped more than a mosquito in summer 🦟",
     "Your glove choice says 'perma L' 😭",
     "Imagine missing a slap point blank 💀",
@@ -34,7 +35,60 @@ local messages = {
     "You’re a walking slap donation machine 💸",
     "Glove tier: God. Player tier: Trash 🗑️",
     "Every time you slap, a noob gets stronger ✨",
-    "Void farming? You're just farming Ls 📦"
+    "Void farming? You're just farming Ls 📦",
+
+    -- New 50
+    "You swing like you're underwater 🐟",
+    "That slap wouldn’t knock over a paper bag 📦",
+    "Void looks at you and says 'nah I’m good' 😭",
+    "You run more than you slap 🏃‍♂️💨",
+    "Glove? More like tickle weapon 🫨",
+    "You’re a free kill with a cooldown ⏱️",
+    "Your gloves should come with a warning: Do Not Rely On 🪧",
+    "You’ve mastered the art of respawning 🔁",
+    "Your KD ratio filed for bankruptcy 📉",
+    "Slap Royale? You just spectate that mode 👁️",
+    "Slapped so hard you got lore 💀",
+    "Even the arena tries to kick you out 😭",
+    "You’re the reason tutorial exists 📚",
+    "You have more void trips than slaps 🚪",
+    "Glove says 'primary', skill says 'optional' 🧤",
+    "You bring a slap to a punchline 🤣",
+    "Default glove dodged you out of shame 😳",
+    "You got folded like a Roblox Ragdoll 💫",
+    "I’d rather 1v1 a rock, it moves more than you 🪨",
+    "You're farming Ls like it's currency 💰",
+    "Even a frozen glove got more movement ❄️",
+    "You slapped and missed the map 🎯",
+    "Slapple doesn’t warn you, it avoids you 🙅",
+    "I saw your glove do a U-turn from embarrassment 🔁",
+    "You drop faster than FPS on graphics 10 📉",
+    "Every round you're in is free XP for others 💥",
+    "You’d still lose if it was slap turn-based ⏳",
+    "You got juked by someone emoting 😐",
+    "That void trip was your best play all game 🕳️",
+    "You’re not AFK but might as well be 💤",
+    "Arena doesn’t fear you, it pities you 😔",
+    "Slap mechanic asked to not be associated with you 🙃",
+    "Your glove’s most used stat? Respawn time 😭",
+    "Bob sees you and leaves the server 💀",
+    "You boost others' KD just by existing 📈",
+    "You can't even glitch right 😹",
+    "You're the lag spike, but for your own team 📶",
+    "You fell off harder than Reaper in 2023 😬",
+    "Even the mail glove returns you unopened 📦",
+    "You bring down the average IQ of the arena 🧠",
+    "Slap sound effect plays out of pity 🔊",
+    "Your glove is the only part that does damage—by leaving 😭",
+    "You get flung more than objects in physics demos 🎢",
+    "You teleport like you're lost 😵",
+    "You slapped a clone and still missed 😵‍💫",
+    "Even Elude wouldn’t dodge that performance 🌀",
+    "Your combo is death and disappointment 💀",
+    "You fell off so hard the void rejected you 🙅‍♂️",
+    "Default glove laughs when you pick it 😹",
+    "You're a highlight reel—for the enemy 🏆",
+    "Gamepass can’t fix that level of L 🧾"
 }
 
 -- === Trigger Word Categories ===
@@ -151,7 +205,7 @@ task.spawn(function()
             if channel then
                 channel:SendAsync(msg)
             end
-            task.wait(5) -- Adjust for how aggressive you want it
+            task.wait(5) -- Adjust for spam speed
         end
     end
 end)
