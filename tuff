@@ -205,7 +205,7 @@ task.spawn(function()
             if channel then
                 channel:SendAsync(msg)
             end
-            task.wait(14) -- Adjust for spam speed
+            task.wait(10) -- Adjust for spam speed
         end
     end
 end)
